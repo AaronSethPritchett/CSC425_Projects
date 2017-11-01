@@ -1,0 +1,18 @@
+{
+  "name": "websocketproject",
+  "version": "1.0.0",
+  "description": "TicTacToe",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "author": "Christopher Harton",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.8.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4"
+  }
+}

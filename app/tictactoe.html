@@ -1,0 +1,36 @@
+<!--Done by Christopher Harton -->
+<html>
+<header>
+	<title>Tic-Tac-Toe</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src='/socket.io/socket.io.js'></script>
+    <script src='tictactoe.js'></script>
+</header>
+<body onload="setup()">
+<div id="top">
+	<h1>Tic-Tac-Toe With Friends</h1>
+	<p>Play tic-tac-toe with your friends!</p>
+</div>
+<div id="divboard">
+	<table id="board">
+		<tbody>
+			<tr class="rows">
+				<td id="lefttopcell"></td>
+				<td id="topcell"></td>
+				<td id="righttopcell"></td>			
+			</tr>
+			<tr class="rows">
+				<td id="leftmidcell"></td>
+				<td id="midcell"></td>
+				<td id="rightmidcell"></td>				
+			</tr>
+			<tr class="rows">
+				<td id="leftbotcell"></td>
+				<td id="botcell"></td>
+				<td id="rightbotcell"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>

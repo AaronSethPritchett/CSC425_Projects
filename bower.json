@@ -1,0 +1,17 @@
+{
+  "name": "websocketproject",
+  "description": "TicTacToe",
+  "main": "index.js",
+  "authors": [
+    "Christopher Harton"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
