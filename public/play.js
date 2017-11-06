@@ -142,7 +142,7 @@ window.onload = function() {
                 socket.emit('send', { message: text });
                 box1status = true;
                 yourTurn = false;
-    };
+    }};
      box2.onclick = function() {
         if(box2status==false && yourTurn == true)
             {
@@ -210,4 +210,4 @@ window.onload = function() {
     };
     
 
-}}
+}
