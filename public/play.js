@@ -153,7 +153,7 @@ window.onload = function() {
             }
     };
      box3.onclick = function() {
-        if(box3status==false)
+        if(box3status==false && yourTurn == true)
             {
                 var text = "3" + currentMarker;
                 socket.emit('send', { message: text });
@@ -161,7 +161,7 @@ window.onload = function() {
             }
     };
      box4.onclick = function() {
-        if(box4status==false)
+        if(box4status==false && yourTurn == true)
             {
                 var text = "4" + currentMarker;
                 socket.emit('send', { message: text });
@@ -169,7 +169,7 @@ window.onload = function() {
             }
     };
      box5.onclick = function() {
-        if(box5status==false)
+        if(box5status==false && yourTurn == true)
             {
                 var text = "5" + currentMarker;
                 socket.emit('send', { message: text });
@@ -177,7 +177,7 @@ window.onload = function() {
             }
     };
      box6.onclick = function() {
-        if(box6status==false)
+        if(box6status==false && yourTurn == true)
             {
                 var text = "6" + currentMarker;
                 socket.emit('send', { message: text });
@@ -185,7 +185,7 @@ window.onload = function() {
             }
     };
      box7.onclick = function() {
-        if(box7status==false)
+        if(box7status==false && yourTurn == true)
             {
                 var text = "7" + currentMarker;
                 socket.emit('send', { message: text });
@@ -193,7 +193,7 @@ window.onload = function() {
             }
     };
      box8.onclick = function() {
-        if(box8status==false)
+        if(box8status==false && yourTurn == true)
             {
                 var text = "8" + currentMarker;
                 socket.emit('send', { message: text });
@@ -201,7 +201,7 @@ window.onload = function() {
             }
     };
     box9.onclick = function() {
-        if(box9status==false)
+        if(box9status==false && yourTurn == true)
             {
                 var text = "9" + currentMarker;
                 socket.emit('send', { message: text });
