@@ -61,10 +61,14 @@ body{
 }
 
 .X{
-    background-image: "x.jpg";
+    background-image: url("x.jpg");
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
 }
 
 .O{
-    background-image: "o.jpg";
+    background-image: url("o.jpg");
+    background-size: 200px 200px;
+    background-repeat: no-repeat;
 }
 
