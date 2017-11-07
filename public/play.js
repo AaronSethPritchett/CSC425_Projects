@@ -1,6 +1,17 @@
 window.onload = function() {
     var currentMarker;
     var yourTurn;
+    var boardState = [];
+    boardState[0] = 0;
+    boardState[1] = 1;
+    boardState[2] = 2;
+    boardState[3] = 3;
+    boardState[4] = 4;
+    boardState[5] = 5;
+    boardState[6] = 6;
+    boardState[7] = 7;
+    boardState[8] = 8;
+    var turnCount = 0;
     var firstLoad = true;
     var box1status = false;
     var box2status = false;
@@ -23,7 +34,6 @@ window.onload = function() {
     var box8 = document.getElementById("botcell");
     var box9 = document.getElementById("rightbotcell");
     
-    //Happens at beginning of connection only
     socket.on('message', function (data) {
         if(firstLoad == true) {
             currentMarker = data.message;
@@ -37,13 +47,26 @@ window.onload = function() {
             yourTurn == !yourTurn;
             var cell = data.message.charAt(0);
             var fill = data.message.charAt(1);
+            
+            //set turn permission
+            if(fill == currentMarker)
+                yourTurn = false;
+            else
+                yourTurn = true;
             if(cell == "1")
                 {
                     box1status = true;
                 if(fill == "X")
-                    box1.className += "X";
+                    {
+                        box1.className += "X";
+                        boardState[0] = "X";
+                    }
                 else if(fill == "O")
-                    box1.className += "O";
+                    {
+                        box1.className += "O";
+                        boardState[0] = "O";
+                    }
+                    
                 else
                     console.log("Faulty background change!");
             }
@@ -52,9 +75,15 @@ window.onload = function() {
                 {
                     box2status = true;
                 if(fill == "X")
-                    box2.className += "X";
+                    {
+                        box2.className += "X";
+                        boardState[1] = "X";
+                    }
                 else if(fill == "O")
-                    box2.className += "O";
+                    {
+                        box2.className += "O";
+                        boardState[1] = "O";
+                    }
                 else
                     console.log("Faulty background change!");
                 }
@@ -62,9 +91,15 @@ window.onload = function() {
                 {
                     box3status = true;
                 if(fill == "X")
-                    box3.className += "X";
+                    {
+                        box3.className += "X";
+                        boardState[2] = "X";
+                    }
                 else if(fill == "O")
-                    box3.className += "O";
+                    {
+                        box3.className += "O";
+                        boardState[2] = "O";
+                    }
                 else
                     console.log("Faulty background change!");
                 }
@@ -72,9 +107,15 @@ window.onload = function() {
                 {
                     box4status = true;
                 if(fill == "X")
-                    box4.className += "X";
+                    {
+                        box4.className += "X";
+                        boardState[3] = "X";
+                    }
                 else if(fill == "O")
-                    box4.className += "O";
+                    {
+                        box4.className += "O";
+                        boardState[3] = "O";
+                    }
                 else
                     console.log("Faulty background change!");
                 }
@@ -82,9 +123,15 @@ window.onload = function() {
                 {
                     box5status = true;
                 if(fill == "X")
-                    box5.className += "X";
+                    {
+                        box5.className += "X";
+                        boardState[4] = "X";
+                    }
                 else if(fill == "O")
-                    box5.className += "O";
+                    {
+                        box5.className += "O";
+                        boardState[4] = "O";
+                    }
                 else
                     console.log("Faulty background change!");
                 }
@@ -92,9 +139,15 @@ window.onload = function() {
                 {
                     box6status = true;
                 if(fill == "X")
-                    box6.className += "X";
+                    {
+                        box6.className += "X";
+                        boardState[5] = "X";
+                    }
                 else if(fill == "O")
-                    box6.className += "O";
+                    {
+                        box6.className += "O";
+                        boardState[5] = "O";
+                    }
                 else
                     console.log("Faulty background change!");
                 }
@@ -102,9 +155,15 @@ window.onload = function() {
                 {
                     box7status = true;
                 if(fill == "X")
-                    box7.className += "X";
+                    {
+                        box7.className += "X";
+                        boardState[6] = "X";
+                    }
                 else if(fill == "O")
-                    box7.className += "O";
+                    {
+                        box7.className += "O";
+                        boardState[6] = "O";
+                    }
                 else
                     console.log("Faulty background change!");
                 }
@@ -112,9 +171,15 @@ window.onload = function() {
                 {
                     box8status = true;
                 if(fill == "X")
-                    box8.className += "X";
+                    {
+                        box8.className += "X";
+                        boardState[7] = "X";
+                    }
                 else if(fill == "O")
-                    box8.className += "O";
+                    {
+                        box8.className += "O";
+                        boardState[7] = "O";
+                    }
                 else
                     console.log("Faulty background change!");
                 }
@@ -122,9 +187,15 @@ window.onload = function() {
                 {
                     box9status = true;
                 if(fill == "X")
-                    box9.className += "X";
+                    {
+                        box9.className += "X";
+                        boardState[8] = "X";
+                    }
                 else if(fill == "O")
-                    box9.className += "O";
+                    {
+                        box9.className += "O";
+                        boardState[8] = "O";
+                    }
                 else
                     console.log("Faulty background change!");
                 }
@@ -132,24 +203,22 @@ window.onload = function() {
             {
                 console.log("Faulty message recieved! " + data.message);    
             }
+            checkWin();
         }
     });
 
     box1.onclick = function() {
-        if(box1status==false && yourTurn == true)   //put yourturn here
+        if(box1status==false && yourTurn == true)   
     {
                 var text = "1" + currentMarker;
                 socket.emit('send', { message: text });
-                box1status = true;
-                yourTurn = false;
-    }};
+    }
+    };
      box2.onclick = function() {
         if(box2status==false && yourTurn == true)
             {
                 var text = "2" + currentMarker;
                 socket.emit('send', { message: text });
-                box2status = true;
-                yourTurn == false;
             }
     };
      box3.onclick = function() {
@@ -157,7 +226,6 @@ window.onload = function() {
             {
                 var text = "3" + currentMarker;
                 socket.emit('send', { message: text });
-                box3status = true;
             }
     };
      box4.onclick = function() {
@@ -165,7 +233,6 @@ window.onload = function() {
             {
                 var text = "4" + currentMarker;
                 socket.emit('send', { message: text });
-                box4status = true;
             }
     };
      box5.onclick = function() {
@@ -173,7 +240,6 @@ window.onload = function() {
             {
                 var text = "5" + currentMarker;
                 socket.emit('send', { message: text });
-                box5status = true;
             }
     };
      box6.onclick = function() {
@@ -181,7 +247,6 @@ window.onload = function() {
             {
                 var text = "6" + currentMarker;
                 socket.emit('send', { message: text });
-                box6status = true;
             }
     };
      box7.onclick = function() {
@@ -189,7 +254,6 @@ window.onload = function() {
             {
                 var text = "7" + currentMarker;
                 socket.emit('send', { message: text });
-                box7status = true;
             }
     };
      box8.onclick = function() {
@@ -197,7 +261,6 @@ window.onload = function() {
             {
                 var text = "8" + currentMarker;
                 socket.emit('send', { message: text });
-                box8status = true;
             }
     };
     box9.onclick = function() {
@@ -205,9 +268,134 @@ window.onload = function() {
             {
                 var text = "9" + currentMarker;
                 socket.emit('send', { message: text });
-                box9status = true;
             }
     };
     
+    function checkWin()
+    {
+        turnCount++;
+        if(boardState[0] == boardState[1] && boardState[2] == boardState[1])
+            {
+                if(boardState[0] == currentMarker)
+                    {
+                        document.getElementById("win").className = "visible";
+                        freezeBoard();
+                    }
+                else
+                    {
+                        document.getElementById("lose").className = "visible";
+                        freezeBoard();
+                    }
+            }
+        else if(boardState[3] == boardState[4] && boardState[4] == boardState[5])
+            {
+                if(boardState[3] == currentMarker)
+                    {
+                       document.getElementById("win").className = "visible";
+                    }
+                else
+                    {
+                        document.getElementById("lose").className = "visible";
+                    }
+            }
+        else if(boardState[6] == boardState[7] && boardState[7] == boardState[8])
+            {
+                if(boardState[6] == currentMarker)
+                    {
+                       document.getElementById("win").className = "visible";
+                       freezeBoard();
+                    }
+                else
+                    {
+                        document.getElementById("lose").className = "visible";
+                        freezeBoard();
+                    }
+            }
+        else if(boardState[0] == boardState[3] && boardState[3] == boardState[6])
+            {
+                if(boardState[0] == currentMarker)
+                    {
+                       document.getElementById("win").className = "visible";
+                        freezeBoard();
+                    }
+                else
+                    {
+                        document.getElementById("lose").className = "visible";
+                        freezeBoard();
+                    }
+            }
+        else if(boardState[1] == boardState[4] && boardState[4] == boardState[7])
+            {
+                if(boardState[1] == currentMarker)
+                    {
+                       document.getElementById("win").className = "visible";
+                        freezeBoard();
+                    }
+                else
+                    {
+                        document.getElementById("lose").className = "visible";
+                        freezeBoard();
+                    }
+            }
+        else if(boardState[2] == boardState[5] && boardState[5] == boardState[8])
+            {
+                if(boardState[2] == currentMarker)
+                    {
+                       document.getElementById("win").className = "visible";
+                        freezeBoard();
+                    }
+                else
+                    {
+                        document.getElementById("lose").className = "visible";
+                        freezeBoard();
+                    }
+            }
+        else if(boardState[0] == boardState[4] && boardState[4] == boardState[8])
+            {
+                if(boardState[0] == currentMarker)
+                    {
+                       document.getElementById("win").className = "visible";
+                        freezeBoard();
+                    }
+                else
+                    {
+                        document.getElementById("lose").className = "visible";
+                        freezeBoard();
+                    }
+            }
+        else if(boardState[2] == boardState[4] && boardState[4] == boardState[6])
+            {
+                if(boardState[2] == currentMarker)
+                    {
+                       document.getElementById("win").className = "visible";
+                        freezeBoard();
+                    }
+                else
+                    {
+                        document.getElementById("lose").className = "visible";
+                        freezeBoard();
+                    }
+            }
+        else if(turnCount == 9)
+            {
+                document.getElementById("tie").className = "visible";
+            }
+        else
+            {
+                console.log("checkWin Error");
+            }
+    };
 
+    function freezeBoard()
+    {
+        box1status = true;
+        box2status = true;
+        box3status = true;
+        box4status = true;
+        box5status = true;
+        box6status = true;
+        box7status = true;
+        box8status = true;
+        box9status = true;
+    };
 }

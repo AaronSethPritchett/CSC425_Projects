@@ -72,3 +72,20 @@ body{
     background-repeat: no-repeat;
 }
 
+.invisible{
+    display: none;
+}
+
+.visible{
+    display: inline;
+    font-size: 70px;
+}
+
+#win{
+    color: green;
+}
+
+#lose{
+    color: red;
+}
+
